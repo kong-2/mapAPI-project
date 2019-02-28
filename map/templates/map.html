@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=qswhj7djp7 "></script>
+</head>
+<body>
+<div id="map" style="width:50%;height:400px;"></div>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(37.5310089,127.0568059),
+    zoom: 6
+};
+
+//var map = new naver.maps.Map('map',);
+
+var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(37.537676,127.0188933),
+    zoom: 6
+});
+
+var marker1 = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.3595704, 127.105399),
+    map: map
+});
+
+var marker2 = new naver.maps.Marker({
+    position : new naver.maps.LatLng(37.5494831,127.0728829),
+    map : map
+});
+
+var contentString=['<h1>세종대</h1>','학생회관'].join();
+
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString
+});
+
+naver.maps.Event.addListener(marker2,"click",function(e){
+    if(infowindow.getMap()){
+        infowindow.close();
+    }
+    else{
+        infowindow.open(map,marker2);
+        
+    }
+});
+</script>
+</body>
+</html>
